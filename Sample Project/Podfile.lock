@@ -1,0 +1,28 @@
+PODS:
+  - Alamofire (5.4.3)
+  - Invitee (1.0.1):
+    - Alamofire (~> 5.4.3)
+    - RxSwift (~> 6.2.0)
+    - SnapKit (~> 5.0.1)
+  - RxSwift (6.2.0)
+  - SnapKit (5.0.1)
+
+DEPENDENCIES:
+  - Invitee (= 1.0.1)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Invitee
+    - RxSwift
+    - SnapKit
+
+SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  Invitee: 515ba27169a8c1145d1ee6dbe1699002c470f68e
+  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+
+PODFILE CHECKSUM: bb6b7cabfcd789b1442eb60abd835c28ec374ae5
+
+COCOAPODS: 1.9.3

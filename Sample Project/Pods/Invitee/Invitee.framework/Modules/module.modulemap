@@ -1,0 +1,11 @@
+framework module Invitee {
+  umbrella header "Invitee.h"
+
+  export *
+  module * { export * }
+}
+
+module Invitee.Swift {
+    header "Invitee-Swift.h"
+    requires objc
+}

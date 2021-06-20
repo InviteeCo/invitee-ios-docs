@@ -1,0 +1,116 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
+// swift-module-flags: -target arm64-apple-ios14.1 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name Invitee
+import Alamofire
+import Contacts
+import Foundation
+@_exported import Invitee
+import MessageUI
+import RxSwift
+import SnapKit
+import Swift
+import UIKit
+@_hasMissingDesignatedInitializers final public class InviteeClient {
+  public static var shared: Invitee.InviteeClient {
+    get
+  }
+  final public let userCampaign: RxSwift.BehaviorSubject<Invitee.Campaign?>
+  @objc deinit
+  final public func clear()
+  final public func refresh()
+}
+extension InviteeClient {
+  final public func setup(for user: Invitee.User, callback: @escaping (Invitee.Campaign?) -> ())
+}
+extension InviteeClient {
+  final public func present(on hostViewController: UIKit.UIViewController, style: UIKit.UIModalPresentationStyle = .automatic)
+  final public func presentNotificationIfNeeded()
+}
+public struct Constants {
+}
+public typealias GestureAction = (() -> Swift.Void)
+extension UIView {
+  public func addTapGesture(_ action: @escaping Invitee.GestureAction)
+}
+@_hasMissingDesignatedInitializers public class CommonUtilities {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class Label : UIKit.UILabel {
+  public var lineHeight: CoreGraphics.CGFloat?
+  @objc override dynamic public var text: Swift.String? {
+    @objc get
+    @objc set(value)
+  }
+  @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+public enum RewardType : Swift.String, Swift.Codable {
+  case money
+  case percentage
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct Campaign : Swift.Codable {
+  public let title: Swift.String
+  public let description: Swift.String
+  public let endDate: Swift.String?
+  public let paidCampaign: Swift.Bool
+  public let rewardAmount: Swift.Double?
+  public let rewardType: Invitee.RewardType?
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public enum APIResult<T, APIClientError> {
+  case success(T)
+  case successNoContent
+  case failure(APIClientError)
+}
+@_hasMissingDesignatedInitializers public class APIClient {
+  public static var shared: Invitee.APIClient
+  @objc deinit
+}
+extension APIClient {
+  public func get<T>(url: Alamofire.URLConvertible, params: Alamofire.Parameters? = nil, extraHeders: Alamofire.HTTPHeaders? = nil, encoding: Alamofire.ParameterEncoding = URLEncoding.default) -> RxSwift.Observable<Invitee.APIResult<T, Invitee.APIClientError>> where T : Swift.Decodable, T : Swift.Encodable
+  public func post<T>(url: Alamofire.URLConvertible, params: Alamofire.Parameters? = nil, extraHeders: Alamofire.HTTPHeaders? = nil, encoding: Alamofire.ParameterEncoding = JSONEncoding.default) -> RxSwift.Observable<Invitee.APIResult<T, Invitee.APIClientError>> where T : Swift.Decodable, T : Swift.Encodable
+  public func put<T>(url: Alamofire.URLConvertible, params: Alamofire.Parameters? = nil, extraHeders: Alamofire.HTTPHeaders? = nil, encoding: Alamofire.ParameterEncoding = JSONEncoding.default) -> RxSwift.Observable<Invitee.APIResult<T, Invitee.APIClientError>> where T : Swift.Decodable, T : Swift.Encodable
+}
+extension APIClient {
+  public func dataGet(url: Alamofire.URLConvertible, params: Alamofire.Parameters? = nil, extraHeders: Alamofire.HTTPHeaders? = nil, encoding: Alamofire.ParameterEncoding = URLEncoding.default) -> RxSwift.Observable<Swift.Result<Foundation.Data, Invitee.APIClientError>>
+  public func dataPost(url: Alamofire.URLConvertible, params: Alamofire.Parameters? = nil, extraHeders: Alamofire.HTTPHeaders? = nil, encoding: Alamofire.ParameterEncoding = URLEncoding.default) -> RxSwift.Observable<Swift.Result<Foundation.Data, Invitee.APIClientError>>
+  public func generalGet(url: Alamofire.URLConvertible, params: Alamofire.Parameters? = nil, extraHeders: Alamofire.HTTPHeaders? = nil, encoding: Alamofire.ParameterEncoding = URLEncoding.default) -> RxSwift.Observable<Swift.Result<Foundation.Data, Invitee.APIClientError>>
+  public func generalPost(url: Alamofire.URLConvertible, params: Alamofire.Parameters? = nil, extraHeders: Alamofire.HTTPHeaders? = nil, encoding: Alamofire.ParameterEncoding = URLEncoding.default) -> RxSwift.Observable<Swift.Result<Foundation.Data, Invitee.APIClientError>>
+}
+public enum APIClientError : Foundation.LocalizedError {
+  case badRequest(Swift.Error, Invitee.APIErrorResponse?)
+  case unauthorized(Swift.Error, Invitee.APIErrorResponse?)
+  case forbidden(Swift.Error, Invitee.APIErrorResponse?)
+  case notFound(Swift.Error, Invitee.APIErrorResponse?)
+  case tooManyRequest(Swift.Error, Invitee.APIErrorResponse?)
+  case serverError(Swift.Error, Invitee.APIErrorResponse?)
+  case decodingError(Swift.Error)
+  case otherError
+  case unknownError(Swift.Error)
+  case noBodyError
+  case notAError
+}
+public struct APIErrorResponse : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers public class APIEventMonitor : Alamofire.ClosureEventMonitor {
+  override public init(queue: Dispatch.DispatchQueue = .main)
+  @objc deinit
+}
+public struct User : Swift.Codable {
+  public let customerId: Swift.String
+  public let firstName: Swift.String
+  public let lastName: Swift.String?
+  public let phoneNumber: Swift.String
+  public init(customerId: Swift.String, firstName: Swift.String, lastName: Swift.String?, phoneNumber: Swift.String)
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
