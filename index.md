@@ -57,3 +57,20 @@ override func viewDidAppear(_ animated: Bool) {
     InviteeClient.shared.presentNotificationIfNeeded()
 }
 ```
+
+## Tracking referral steps
+
+In order for Invitee to process referrals, you need to let us know when key 'steps' have been completed. These steps are configured when you setup a campaign & are used to indicate a completed referral. Eg. Sign up + make purchase = referral reward.
+
+There are two ways to track these steps, either via our REST api or through the SDK itself. If you choose to use the SDK then the following code snippet can be used as a reference for tracking.
+
+```markdown
+InviteeClient.shared.trackReferralStep(customerId: "abcd-1234-abcd-1234", phoneNumber: "0412345678", step: "SIGNUP", completion: { [weak self] result in
+    switch result {
+    case .success:
+        // Referral step successfully tracked!
+    case .failure(let error):
+        // Error occured while attempting to track step
+    }
+})
+```
