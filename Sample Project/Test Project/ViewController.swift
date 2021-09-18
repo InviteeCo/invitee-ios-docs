@@ -62,6 +62,17 @@ class ViewController: UIViewController {
             weakself.referButton.isHidden = false
         }
     }
+    
+    private func trackUserSignedUp() {
+        InviteeClient.shared.trackReferralStep(customerId: user.customerId, phoneNumber: user.phoneNumber, step: "SIGNUP", completion: { [weak self] result in
+            switch result {
+            case .success:
+                break // Referral step successfully tracked
+            case .failure(let error):
+                break // Error occured while attempting to track step
+            }
+        })
+    }
 
 }
 
