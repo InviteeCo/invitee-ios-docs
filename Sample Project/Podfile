@@ -6,5 +6,5 @@ target 'Test Project' do
   use_frameworks!
 
   # Pods for Invitee
-  pod 'Invitee', '1.0.1'
+  pod 'Invitee'
 end
