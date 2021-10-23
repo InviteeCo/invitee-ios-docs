@@ -63,7 +63,9 @@ In order for Invitee to process referrals, you need to let us know when key 'ste
 There are two ways to track these steps, either via our REST api or through the SDK itself. If you choose to use the SDK then the following code snippet can be used as a reference for tracking.
 
 ```markdown
-InviteeClient.shared.trackReferralStep(customerId: "abcd-1234-abcd-1234", phoneNumber: "0412345678", step: "SIGNUP", completion: { [weak self] result in
+private let user = User(customerId: "abcd-1234-abcd-1234", firstName: "John", lastName: "Appleseed", phoneNumber: "0412345678")
+
+InviteeClient.shared.trackReferralStep(user: user, step: "SIGNUP", completion: { [weak self] result in
     switch result {
     case .success:
         // Referral step successfully tracked!
